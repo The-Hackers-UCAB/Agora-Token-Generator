@@ -2,101 +2,79 @@
 
 This is an example of a simple Node/Express server that generates tokens for Agora applications.
 
-### Run the server
 
-- Install the dependencies
+## Installation
 
 ```bash
 #npm dependencies
 $ npm install
+
+#.env.example configuration (Add your Agora App ID and App Certificate)
+$ cp .env.example .env
 ```
 
-- Create a copy of the `.env.example` file and save it as `.env`
-- Add your Agora App ID and App Certificate:
+## Running the app
 
 ```bash
-#.env.example configuration
-$ cp .env.example .env
-
-#Data
-APP_ID=ca123xxxxxx
-APP_CERTIFICATE=12za123xxxxxx
+$ npm start
 ```
-
-You can obtain these values by selecting your project in the [Agora console projects section](https://console.agora.io/projects). Optionally, you can also define a port.
-
-- Start the service
-
-```node
-npm start
-```
-
 ## Endpoints
 
-### Ping
 
-**endpoint structure**
 
-```
-/ping
-```
+### Test (Ping)
 
-response:
+Test connectivity by sending a `ping` request.
 
-```
+```bash
+#endpoint structure
+GET ${url}/ping
+
+#response:
 {"message":"pong"}
 ```
 
+
 ### RTC Token
 
-The `rtc` token endpoint requires a `tokentype` (uid || userAccount), `channelName`, and the user's `uid` (type varies based on `tokentype`).
-`(optional)` Pass an integer to represent the token lifetime in seconds.
+The `rtc` token endpoint requires a `tokentype` (uid || userAccount), `channelName`, and the user's `uid` (type varies based on `tokentype`). `(optional)` Pass an integer to represent the token lifetime in seconds.
 
-**endpoint structure**
+```bash
+#endpoint structure
+GET ${URL}/rtc/${channelName}/${role}/${tokentype}/${uid}/?expiry=
 
-```
-/rtc/:channelName/:role/:tokentype/:uid/?expiry=
-```
-
-response:
-
-```
+#response:
 {"rtcToken":" "}
 ```
 
-## RTM Token
 
-The `rtm` token endpoint requires the user's `uid`.
-`(optional)` Pass an integer to represent the privelege lifetime in seconds.
+### RTM Token
 
-**endpoint structure**
+The `rtm` token endpoint requires the user's `uid`. `(optional)` Pass an integer to represent the privelege lifetime in seconds.
 
-```
-/rtm/:uid/?expiry=
-```
+```bash
+#endpoint structure
+GET ${url}/rtm/${uid}/?expiry=
 
-response:
-
-```
+#response:
 {"rtmToken":" "}
 ```
 
-### Both Tokens
 
-The `rte` token endpoint generates both the `rtc` and `rtm` tokens with a single request. This endpoint requires a `tokentype` (uid || userAccount), `channelName`, and the user's `uid` (type varies `String/Int` based on `tokentype`).
-`(optional)` Pass an integer to represent the token lifetime in seconds.
+### RTE Tokens
 
-**endpoint structure**
+The `rte` token endpoint generates both the `rtc` and `rtm` tokens with a single request. This endpoint requires a `tokentype` (uid || userAccount), `channelName`, and the user's `uid` (type varies `String/Int` based on `tokentype`). `(optional)` Pass an integer to represent the token lifetime in seconds.
 
-```
-/rte/:channelName/:role/:tokentype/:uid/?expiry=
-```
+```bash
+#endpoint structure
+GET ${url}/rte/${channelName}/${role}/${tokentype}/${uid}/?expiry=
 
-response:
-
-```
+#response:
 {
   "rtcToken":" ",
   "rtmToken":" "
 }
-```
+
+## License
+
+Agora-Token-Generator is [MIT licensed](LICENSE).
