@@ -74,13 +74,14 @@ GET ${url}/rte/${channelName}/${role}/${tokentype}/${uid}/?expiry=
   "rtcToken":" ",
   "rtmToken":" "
 }
+```
 
 ## License
 
-Agora-Token-Generator is [MIT licensed](LICENSE).
+Agora-Token-Generator is [MIT licensed](LICENSE)
 
 
-##Extras
+## Extras
 
 ### Guides
 
