@@ -78,3 +78,11 @@ GET ${url}/rte/${channelName}/${role}/${tokentype}/${uid}/?expiry=
 ## License
 
 Agora-Token-Generator is [MIT licensed](LICENSE).
+
+
+##Extras
+
+### Guides
+
+- [Example of a simple Node/Express server that generates tokens for Agora applications.](https://github.com/AgoraIO-Community/Agora-Node-TokenServer)
+
